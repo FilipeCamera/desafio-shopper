@@ -10,6 +10,7 @@ describe('Driver', () => {
       car: 'test',
       tax: 2.5,
       rate: 3,
+      rateDescription: 'test',
       minimumKm: 1,
     });
 
@@ -20,6 +21,7 @@ describe('Driver', () => {
     expect(driver.car).toEqual('test');
     expect(driver.tax).toEqual(2.5);
     expect(driver.rate).toEqual(3);
+    expect(driver.rateDescription).toEqual('test');
     expect(driver.minimumKm).toEqual(1);
   });
 
@@ -31,6 +33,7 @@ describe('Driver', () => {
       car: 'test',
       tax: 2.5,
       rate: 3,
+      rateDescription: 'test',
       minimumKm: 1,
     });
 
@@ -43,6 +46,7 @@ describe('Driver', () => {
       car: 'test',
       tax: 2.5,
       rate: 3,
+      rateDescription: 'test',
       minimumKm: 1,
     };
 

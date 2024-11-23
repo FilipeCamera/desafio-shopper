@@ -1,26 +1,39 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('driver')
 class Driver {
-  @PrimaryGeneratedColumn('identity')
+  @PrimaryGeneratedColumn('identity', { name: 'id' })
   private _id!: number;
 
-  @Column({ type: 'varchar', length: 120, nullable: false })
+  @Column({ type: 'varchar', name: 'name', length: 120, nullable: false })
   private _name!: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: false })
+  @Column({
+    type: 'varchar',
+    name: 'description',
+    length: 255,
+    nullable: false,
+  })
   private _description!: string;
 
-  @Column({ type: 'varchar', length: 120, nullable: false })
+  @Column({ type: 'varchar', name: 'car', length: 120, nullable: false })
   private _car!: string;
 
-  @Column({ type: 'integer', nullable: false })
+  @Column({ type: 'integer', name: 'rate', nullable: false })
   private _rate!: number;
 
-  @Column({ type: 'float', nullable: false })
+  @Column({
+    type: 'varchar',
+    name: 'rateDescription',
+    length: 255,
+    nullable: false,
+  })
+  private _rateDescription!: string;
+
+  @Column({ type: 'float', name: 'tax', nullable: false })
   private _tax!: number;
 
-  @Column({ type: 'float', nullable: false })
+  @Column({ type: 'float', name: 'minimumKm', nullable: false })
   private _minimumKm!: number;
 
   get id(): number {
@@ -59,24 +72,32 @@ class Driver {
     return this._rate;
   }
 
-  public set rate(value: number) {
-    this._rate = value;
+  public set rate(rate: number) {
+    this._rate = rate;
+  }
+
+  public set rateDescription(rateDescription: string) {
+    this._rateDescription = rateDescription;
+  }
+
+  public get rateDescription(): string {
+    return this._rateDescription;
   }
 
   public get tax(): number {
     return this._tax;
   }
 
-  public set tax(value: number) {
-    this._tax = value;
+  public set tax(tax: number) {
+    this._tax = tax;
   }
 
   public get minimumKm(): number {
     return this._minimumKm;
   }
 
-  public set minimumKm(value: number) {
-    this._minimumKm = value;
+  public set minimumKm(minimumKm: number) {
+    this._minimumKm = minimumKm;
   }
 
   public toJSON(): Record<string, any> {
@@ -86,6 +107,7 @@ class Driver {
       description: this._description,
       car: this._car,
       rate: this._rate,
+      rateDescription: this._rateDescription,
       tax: this._tax,
       minimumKm: this._minimumKm,
     };

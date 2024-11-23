@@ -1,8 +1,11 @@
 import 'reflect-metadata';
 import express, { Application, NextFunction, Request, Response } from 'express';
-import dataSource from './config/database';
+import dataSource, { driver1, driver2, driver3 } from './config/database';
 import rideRoute from './routes';
 import { ValidationError } from 'express-json-validator-middleware';
+import Driver from './entities/driver';
+
+import 'dotenv/config';
 
 class App {
   private static instance: App;
@@ -15,11 +18,19 @@ class App {
     this.routes();
   }
 
-  private loadDatabase() {
-    dataSource
-      .initialize()
-      .then(() => console.log('Database loaded!'))
-      .catch((error) => console.error('Error: ', error));
+  private async loadDatabase() {
+    try {
+      await dataSource.initialize();
+
+      if (dataSource.isInitialized) {
+        console.log('Database loaded');
+        const driverRepository = dataSource.getRepository(Driver);
+        await driverRepository.upsert([driver1, driver2, driver3], ['_id']);
+        console.log('Driver created in database');
+      }
+    } catch (error) {
+      console.log('Error:', error);
+    }
   }
 
   private middlewares() {

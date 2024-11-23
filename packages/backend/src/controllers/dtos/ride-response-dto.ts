@@ -22,7 +22,7 @@ type RideEstimateResponseDto = {
   distance: number;
   duration: string;
   options: RideDriverOptions[];
-  routeResponse: any;
+  routeResponse: object;
 };
 
 type RideConfirmResponseDto = {};
