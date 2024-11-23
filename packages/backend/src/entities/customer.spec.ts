@@ -3,17 +3,16 @@ import Customer from './customer';
 
 describe('Customer', () => {
   it('should create a customer', () => {
-    const id = randomUUID();
-    const customer = Customer.create({ id, name: 'test' });
+    const customer = Customer.create({ id: 1, name: 'test' });
 
     expect(customer).not.toBeNull();
-    expect(customer.id).toEqual(id);
+    expect(customer.id).toEqual(1);
     expect(customer.name).toEqual('test');
   });
 
   it('must return a json object when converting', () => {
     const id = randomUUID();
-    const customer = Customer.create({ id, name: 'test' });
+    const customer = Customer.create({ id: 1, name: 'test' });
 
     const json = customer.toJSON();
 

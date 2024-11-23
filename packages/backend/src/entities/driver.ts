@@ -2,8 +2,8 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('driver')
 class Driver {
-  @PrimaryGeneratedColumn('uuid')
-  private _id!: string;
+  @PrimaryGeneratedColumn('identity')
+  private _id!: number;
 
   @Column({ type: 'varchar', length: 120, nullable: false })
   private _name!: string;
@@ -23,11 +23,11 @@ class Driver {
   @Column({ type: 'float', nullable: false })
   private _minimumKm!: number;
 
-  get id(): string {
+  get id(): number {
     return this._id;
   }
 
-  set id(id: string) {
+  set id(id: number) {
     this._id = id;
   }
 

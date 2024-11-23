@@ -1,17 +1,17 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 type ITripHistoryDriver = {
-  id: string;
+  id: number;
   name: string;
 };
 
 @Entity('trip_history')
 class TripHistory {
-  @PrimaryGeneratedColumn('uuid')
-  private _id!: string;
+  @PrimaryGeneratedColumn('identity')
+  private _id!: number;
 
-  @Column({ type: 'uuid', nullable: false })
-  private _customerId!: string;
+  @Column({ type: 'int', nullable: false })
+  private _customerId!: number;
 
   @Column({ type: 'varchar', length: 255, nullable: false })
   private _origin!: string;
@@ -28,25 +28,25 @@ class TripHistory {
   @Column({ type: 'varchar', length: 255, nullable: false })
   private _duration!: string;
 
-  @Column({ type: 'jsonb', nullable: false })
+  @Column({ type: 'json', nullable: false })
   private _driver!: ITripHistoryDriver;
 
   @Column({ type: 'float', nullable: false })
   private _value!: number;
 
-  public get id(): string {
+  public get id(): number {
     return this._id;
   }
 
-  public set id(value: string) {
+  public set id(value: number) {
     this._id = value;
   }
 
-  public get customerId(): string {
+  public get customerId(): number {
     return this._customerId;
   }
 
-  public set customerId(value: string) {
+  public set customerId(value: number) {
     this._customerId = value;
   }
 

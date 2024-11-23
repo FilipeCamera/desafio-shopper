@@ -2,8 +2,8 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('customer')
 class Customer {
-  @PrimaryGeneratedColumn('uuid')
-  private _id!: string;
+  @PrimaryGeneratedColumn('identity')
+  private _id!: number;
 
   @Column({ type: 'varchar', length: 120, nullable: false })
   private _name!: string;
@@ -15,11 +15,11 @@ class Customer {
     };
   }
 
-  get id() {
+  get id(): number {
     return this._id;
   }
 
-  set id(id: string) {
+  set id(id: number) {
     this._id = id;
   }
 

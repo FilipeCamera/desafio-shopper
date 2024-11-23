@@ -25,6 +25,9 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "express-json-validator-middleware": "^3.0.1",
+    "reflect-metadata": "^0.2.2",
+    "sqlite3": "^5.1.7",
     "typeorm": "^0.3.20"
   }
 }
