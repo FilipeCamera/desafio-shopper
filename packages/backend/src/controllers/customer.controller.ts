@@ -9,9 +9,9 @@ class CustomerController {
     this.customerService = new CustomerService();
   }
   async create(req: Request, res: Response) {
-    const { name } = req.body;
+    const { id, name } = req.body;
 
-    const customer = Customer.create({ name });
+    const customer = Customer.create({ id, name });
 
     const customerCreated = await this.customerService.create(customer);
 

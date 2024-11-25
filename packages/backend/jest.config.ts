@@ -5,7 +5,7 @@ const config: Config.InitialOptions = {
   testEnvironment: 'node',
   moduleFileExtensions: ['js', 'json', 'ts'],
   rootDir: '.',
-  testRegex: '.*\\.spec\\.ts$',
+  testRegex: '.*\\.test\\.ts$',
   transform: {
     '^.+\\.(t|j)s$': [
       'ts-jest',
@@ -14,9 +14,9 @@ const config: Config.InitialOptions = {
   },
   collectCoverageFrom: ['**/*.(t|j)s'],
   coverageDirectory: './coverage',
-  roots: ['<rootDir>/src/'],
+  roots: ['<rootDir>/test/'],
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1',
+    '^@/(.*)$': '<rootDir>/test/$1',
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
 };

@@ -1,7 +1,11 @@
 export const customerCreateSchemaDto = {
   type: 'object' as const,
-  required: ['name'],
+  required: ['id', 'name'],
   properties: {
+    id: {
+      type: 'number' as const,
+      nullable: false,
+    },
     name: {
       type: 'string' as const,
       nullable: false,

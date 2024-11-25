@@ -28,6 +28,17 @@ class RideController {
 
       const client = new Client({});
 
+      const customer = await this.customerService.find(customer_id);
+
+      if (!customer) {
+        return res
+          .status(404)
+          .json({
+            error_code: 'CUSTOMER_NOT_FOUND',
+            error_description: 'Customer not found',
+          });
+      }
+
       const originGeocode = await client.geocode({
         params: {
           address: origin,

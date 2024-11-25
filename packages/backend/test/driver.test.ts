@@ -1,5 +1,4 @@
-import { randomUUID } from 'crypto';
-import Driver from './driver';
+import Driver from '../src/entities/driver';
 
 describe('Driver', () => {
   it('should create a driver', () => {

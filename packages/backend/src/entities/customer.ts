@@ -3,7 +3,7 @@ import TripHistory from './trip-history';
 
 @Entity('customer')
 class Customer {
-  @PrimaryGeneratedColumn('increment', { name: 'id' })
+  @PrimaryGeneratedColumn('identity', { name: 'id' })
   private _id!: number;
 
   @Column({ type: 'varchar', name: 'name', length: 120, nullable: false })
@@ -23,6 +23,10 @@ class Customer {
 
   get id(): number {
     return this._id;
+  }
+
+  set id(id: number) {
+    this._id = id;
   }
 
   get name() {

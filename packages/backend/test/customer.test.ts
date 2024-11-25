@@ -1,5 +1,4 @@
-import { randomUUID } from 'crypto';
-import Customer from './customer';
+import Customer from '../src/entities/customer';
 
 describe('Customer', () => {
   it('should create a customer', () => {

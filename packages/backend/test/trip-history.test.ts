@@ -1,6 +1,6 @@
-import TripHistory from './trip-history';
-import Customer from './customer';
-import Driver from './driver';
+import Customer from '../src/entities/customer';
+import Driver from '../src/entities/driver';
+import TripHistory from '../src/entities/trip-history';
 
 describe('Trip History', () => {
   it('should create a trip history', () => {

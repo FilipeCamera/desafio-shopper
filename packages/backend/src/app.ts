@@ -2,7 +2,6 @@ import 'reflect-metadata';
 import express, { Application, NextFunction, Request, Response } from 'express';
 import dataSource, { driver1, driver2, driver3 } from './config/database';
 import { rideRoute, customerRoute } from './routes';
-import { ValidationError } from 'express-json-validator-middleware';
 import Driver from './entities/driver';
 
 import 'dotenv/config';
@@ -25,6 +24,7 @@ class App {
       if (dataSource.isInitialized) {
         console.log('Database loaded');
         const driverRepository = dataSource.getRepository(Driver);
+        await driverRepository.clear();
         await driverRepository.upsert([driver1, driver2, driver3], ['_id']);
         console.log('Driver created in database');
       }
