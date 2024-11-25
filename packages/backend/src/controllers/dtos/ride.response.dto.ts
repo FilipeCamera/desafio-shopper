@@ -27,4 +27,4 @@ type RideEstimateResponseDto = {
 
 type RideConfirmResponseDto = {};
 
-export { RideEstimateResponseDto, RideConfirmResponseDto };
+export { RideEstimateResponseDto, RideConfirmResponseDto, RideDriverOptions };

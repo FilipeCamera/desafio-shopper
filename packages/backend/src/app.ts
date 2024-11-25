@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import express, { Application, NextFunction, Request, Response } from 'express';
 import dataSource, { driver1, driver2, driver3 } from './config/database';
-import rideRoute from './routes';
+import { rideRoute, customerRoute } from './routes';
 import { ValidationError } from 'express-json-validator-middleware';
 import Driver from './entities/driver';
 
@@ -39,6 +39,7 @@ class App {
 
   private routes() {
     this.app.use(rideRoute);
+    this.app.use(customerRoute);
   }
 
   public static getInstance(): App {

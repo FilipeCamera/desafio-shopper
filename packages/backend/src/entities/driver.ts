@@ -1,8 +1,16 @@
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryColumn,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import TripHistory from './trip-history';
 
 @Entity('driver')
 class Driver {
-  @PrimaryGeneratedColumn('identity', { name: 'id' })
+  @PrimaryGeneratedColumn('increment', { name: 'id' })
   private _id!: number;
 
   @Column({ type: 'varchar', name: 'name', length: 120, nullable: false })
@@ -36,12 +44,13 @@ class Driver {
   @Column({ type: 'float', name: 'minimumKm', nullable: false })
   private _minimumKm!: number;
 
+  @OneToMany(() => TripHistory, (tripHistory) => tripHistory.driver, {
+    cascade: true,
+  })
+  private _tripHistory!: TripHistory[];
+
   get id(): number {
     return this._id;
-  }
-
-  set id(id: number) {
-    this._id = id;
   }
 
   get name(): string {
@@ -98,6 +107,14 @@ class Driver {
 
   public set minimumKm(minimumKm: number) {
     this._minimumKm = minimumKm;
+  }
+
+  get tripHistory() {
+    return this._tripHistory;
+  }
+
+  set tripHistory(tripHistory: TripHistory[]) {
+    this._tripHistory = tripHistory;
   }
 
   public toJSON(): Record<string, any> {

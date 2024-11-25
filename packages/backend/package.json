@@ -4,6 +4,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --watch 'src/' --exec 'ts-node src/server.ts' -e ts",
+    "typeorm": "typeorm-ts-node-esm",
+    "migration:generate": "typeorm-ts-node-esm migration:generate -d src/config/database.ts",
+    "migration:run": "typeorm-ts-node-esm migration:run -d src/typeorm.config.ts",
     "test": "jest"
   },
   "keywords": [],

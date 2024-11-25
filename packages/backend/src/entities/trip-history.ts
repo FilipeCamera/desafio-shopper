@@ -1,53 +1,60 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
-type ITripHistoryDriver = {
-  id: number;
-  name: string;
-};
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import Driver from './driver';
+import Customer from './customer';
 
 @Entity('trip_history')
 class TripHistory {
-  @PrimaryGeneratedColumn('identity')
+  @PrimaryGeneratedColumn('increment', { name: 'id' })
   private _id!: number;
 
-  @Column({ type: 'int', nullable: false })
-  private _customerId!: number;
+  @ManyToOne(() => Customer, (customer) => customer.tripHistory)
+  @JoinColumn({ name: 'customer_id' })
+  private _customer!: Customer;
 
-  @Column({ type: 'varchar', length: 255, nullable: false })
+  @Column({ type: 'varchar', name: 'origin', length: 255, nullable: false })
   private _origin!: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: false })
+  @Column({
+    type: 'varchar',
+    name: 'destination',
+    length: 255,
+    nullable: false,
+  })
   private _destination!: string;
 
-  @Column({ type: 'float', nullable: false })
+  @Column({ type: 'float', name: 'distance', nullable: false })
   private _distance!: number;
 
-  @Column({ type: 'datetime', nullable: false })
+  @Column({ type: 'datetime', name: 'date', nullable: false })
   private _date!: string;
 
-  @Column({ type: 'varchar', length: 255, nullable: false })
+  @Column({ type: 'varchar', name: 'duration', length: 255, nullable: false })
   private _duration!: string;
 
-  @Column({ type: 'json', nullable: false })
-  private _driver!: ITripHistoryDriver;
+  @ManyToOne(() => Driver, (driver) => driver.tripHistory)
+  @JoinColumn({ name: 'driver_id' })
+  private _driver!: Driver;
 
-  @Column({ type: 'float', nullable: false })
+  @Column({ type: 'float', name: 'value', nullable: false })
   private _value!: number;
 
   public get id(): number {
     return this._id;
   }
 
-  public set id(value: number) {
-    this._id = value;
+  public get customer(): Customer {
+    return this._customer;
   }
 
-  public get customerId(): number {
-    return this._customerId;
-  }
-
-  public set customerId(value: number) {
-    this._customerId = value;
+  public set customer(customer: Customer) {
+    this._customer = customer;
   }
 
   public get origin(): string {
@@ -90,12 +97,12 @@ class TripHistory {
     this._duration = value;
   }
 
-  public get driver(): ITripHistoryDriver {
+  public get driver(): Driver {
     return this._driver;
   }
 
-  public set driver(value: ITripHistoryDriver) {
-    this._driver = value;
+  public set driver(driver: Driver) {
+    this._driver = driver;
   }
 
   public get value(): number {
@@ -109,7 +116,6 @@ class TripHistory {
   public toJSON(): Record<string, any> {
     return {
       id: this._id,
-      customer_id: this._customerId,
       origin: this._origin,
       destination: this._destination,
       distance: this._distance,

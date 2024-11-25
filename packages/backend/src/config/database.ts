@@ -2,17 +2,18 @@ import { DataSource } from 'typeorm';
 import Customer from '../entities/customer';
 import Driver from '../entities/driver';
 import TripHistory from '../entities/trip-history';
+import { join } from 'path';
 
 const dataSource = new DataSource({
   type: 'sqlite',
-  database: './packages/backend/shopper.sqlite',
+  database: join(__dirname, '..', '..', 'shopper.sqlite'),
   synchronize: true,
   logging: true,
-  entities: [Driver, Customer, TripHistory],
+  entities: [join(__dirname, '..', 'entities', '*.{ts,js}')],
+  migrations: [join(__dirname, '..', 'migrations', '*.{ts,js}')],
 });
 
 const driver1 = Driver.create({
-  id: 1,
   name: 'Homer Simpson',
   description:
     'Olá! Sou o Homer, seu motorista camarada! Relaxe e aproveite o passeio, com direito a rosquinhas e boas risadas (e talvez alguns desvios).',
@@ -25,7 +26,6 @@ const driver1 = Driver.create({
 });
 
 const driver2 = Driver.create({
-  id: 2,
   name: 'Dominic Toretto',
   description:
     'Ei, aqui é o Dom. Pode entrar, vou te levar com segurança e rapidez ao seu destino. Só não mexa no rádio, a playlist é sagrada.',
@@ -38,7 +38,6 @@ const driver2 = Driver.create({
 });
 
 const driver3 = Driver.create({
-  id: 3,
   name: 'James Bond',
   description:
     'Boa noite, sou James Bond. À seu dispor para um passeio suave e discreto. Aperte o cinto e aproveite a viagem.',

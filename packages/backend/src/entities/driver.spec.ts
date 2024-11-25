@@ -4,7 +4,6 @@ import Driver from './driver';
 describe('Driver', () => {
   it('should create a driver', () => {
     const driver = Driver.create({
-      id: 1,
       name: 'test',
       description: 'test',
       car: 'test',
@@ -15,7 +14,7 @@ describe('Driver', () => {
     });
 
     expect(driver).not.toBeNull();
-    expect(driver.id).toEqual(1);
+    expect(driver.id).toEqual(undefined);
     expect(driver.name).toEqual('test');
     expect(driver.description).toEqual('test');
     expect(driver.car).toEqual('test');
@@ -27,7 +26,6 @@ describe('Driver', () => {
 
   it('must return a json object when converting', () => {
     const driver = Driver.create({
-      id: 1,
       name: 'test',
       description: 'test',
       car: 'test',
@@ -40,7 +38,7 @@ describe('Driver', () => {
     const json = driver.toJSON();
 
     const expected = {
-      id: 1,
+      id: undefined,
       name: 'test',
       description: 'test',
       car: 'test',
